@@ -1,4 +1,4 @@
-package rafaelBPorto.com.github.CadastrosDeNinjas;
+package rafaelBPorto.com.github.CadastrosDeNinjas.Ninjas;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
