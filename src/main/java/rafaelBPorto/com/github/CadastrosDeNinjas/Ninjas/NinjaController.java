@@ -3,7 +3,7 @@ package rafaelBPorto.com.github.CadastrosDeNinjas.Ninjas;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/ninja")
 public class NinjaController {
 
     @GetMapping("/")
@@ -15,31 +15,31 @@ public class NinjaController {
     /* CRUD */
 
     // TODO Adicionar ninja (CREATE)
-    @PostMapping("/ninja")
+    @PostMapping()
     public String criarNinja(){
         return "Ninja Criado com Sucesso";
     }
 
     // TODO Procurar Ninja por ID (READ)
-    @GetMapping("/ninja/{id}")
+    @GetMapping("/{id}")
     public String encontrarNinja(@PathVariable int id){
         return "Ninja " + id + " encontrado";
     }
 
     // TODO Mostrar todos os ninjas (READ)
-    @GetMapping("/ninja")
+    @GetMapping()
     public String mostarNinjas(){
         return "Ninjas existentes";
     }
 
     // TODO Alterar dados dos ninjas (UPDATE)
-    @PutMapping("/ninja/{id}")
+    @PutMapping("/{id}")
     public String alterarNinja(@PathVariable int id){
         return "Ninja alterado com Sucesso";
     }
 
     // TODO Deletar Ninja (DELETE)
-    @DeleteMapping("ninja/{id}")
+    @DeleteMapping("/{id}")
     public String deletarNinja(@PathVariable int id){
         return "Ninja " + id + " apagado com Sucesso";
     }
