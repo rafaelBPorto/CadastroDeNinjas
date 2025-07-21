@@ -8,7 +8,7 @@ import java.util.Optional;
 @Service
 public class NinjaService {
 
-    /* Pode-se iniciar o construtor para fazer injeção de dependência com @Autowired mas por convenção não é utilizado */
+    /* Pode-se iniciar o construtor para fazer injeção de dependência com @Autowired, mas por convenção não é utilizado */
     private NinjaRepository ninjaRepository;
     /* Ao invés do @Autorided é utilizado o construtor abaixo*/
     public NinjaService(NinjaRepository ninjaRepository) {
@@ -25,6 +25,12 @@ public class NinjaService {
 //        return ninjaRepository.findById(id).orElse(null);
           Optional<NinjaModel> ninja = ninjaRepository.findById(id);
           return ninja.orElse(null);
+    }
+
+
+    // Criar ninja
+    public NinjaModel criarNinja(NinjaModel ninja){
+        return ninjaRepository.save(ninja);
     }
 
 }
