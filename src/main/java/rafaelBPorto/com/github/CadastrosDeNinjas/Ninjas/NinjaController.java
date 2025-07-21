@@ -20,10 +20,9 @@ public class NinjaController {
         return "API para Cadastro de Ninjas";
     }
 
-
     /* CRUD */
 
-    // TODO Adicionar ninja (CREATE)
+    // Adicionar ninja (CREATE)
     @PostMapping("/")
     public NinjaModel criarNinja(@RequestBody NinjaModel ninja){
         return ninjaService.criarNinja(ninja);
@@ -35,7 +34,7 @@ public class NinjaController {
         return ninjaService.listarNinjas();
     }
 
-    // TODO Procurar Ninja por ID (READ)
+    // Procurar Ninja por ID (READ)
     @GetMapping("/{id}")
     public NinjaModel listarNinjaPorId(@PathVariable Long id){
         return ninjaService.listarNinjaPorId(id);
@@ -47,9 +46,10 @@ public class NinjaController {
         return "Ninja alterado com Sucesso";
     }
 
-    // TODO Deletar Ninja (DELETE)
+    // Deletar Ninja (DELETE)
     @DeleteMapping("/{id}")
-    public String deletarNinja(@PathVariable int id){
+    public String deletarNinja(@PathVariable Long id){
+        ninjaService.deletarNinjaPorId(id);
         return "Ninja " + id + " apagado com Sucesso";
     }
 }
