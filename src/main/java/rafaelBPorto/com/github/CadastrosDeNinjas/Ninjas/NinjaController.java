@@ -1,12 +1,21 @@
 package rafaelBPorto.com.github.CadastrosDeNinjas.Ninjas;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ninja")
 public class NinjaController {
 
-    @GetMapping("/")
+//    @Autowired
+    private final NinjaService ninjaService;
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
+
+    @GetMapping()
     public String boasVindas(){
         return "API para Cadastro de Ninjas";
     }
@@ -20,16 +29,16 @@ public class NinjaController {
         return "Ninja Criado com Sucesso";
     }
 
-    // TODO Procurar Ninja por ID (READ)
-    @GetMapping("/{id}")
-    public String encontrarNinja(@PathVariable int id){
-        return "Ninja " + id + " encontrado";
+    // Mostrar todos os ninjas (READ)
+    @GetMapping("/")
+    public List<NinjaModel> listarNinjas() {
+        return ninjaService.listarNinjas();
     }
 
-    // TODO Mostrar todos os ninjas (READ)
-    @GetMapping()
-    public String mostarNinjas(){
-        return "Ninjas existentes";
+    // TODO Procurar Ninja por ID (READ)
+    @GetMapping("/{id}")
+    public NinjaModel listarNinjaPorId(@PathVariable Long id){
+        return ninjaService.listarNinjaPorId(id);
     }
 
     // TODO Alterar dados dos ninjas (UPDATE)
