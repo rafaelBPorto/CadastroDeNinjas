@@ -10,9 +10,12 @@ public class NinjaService {
 
     /* Pode-se iniciar o construtor para fazer injeção de dependência com @Autowired, mas por convenção não é utilizado */
     private NinjaRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
+
     /* Ao invés do @Autorided é utilizado o construtor abaixo*/
-    public NinjaService(NinjaRepository ninjaRepository) {
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
 
     // Listar todos os ninjas
@@ -28,8 +31,11 @@ public class NinjaService {
     }
 
     // Criar ninja
-    public NinjaModel criarNinja(NinjaModel ninja){
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO){
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninja = ninjaRepository.save(ninja);
+
+        return ninjaMapper.map(ninja);
     }
 
     //Deleter ninja por id
