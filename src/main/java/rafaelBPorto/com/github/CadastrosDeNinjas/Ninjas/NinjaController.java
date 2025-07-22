@@ -11,8 +11,11 @@ public class NinjaController {
 
 //    @Autowired
     private final NinjaService ninjaService;
-    public NinjaController(NinjaService ninjaService) {
+    private final NinjaRepository ninjaRepository;
+
+    public NinjaController(NinjaService ninjaService, NinjaRepository ninjaRepository) {
         this.ninjaService = ninjaService;
+        this.ninjaRepository = ninjaRepository;
     }
 
     @GetMapping()
@@ -40,11 +43,11 @@ public class NinjaController {
         return ninjaService.listarNinjaPorId(id);
     }
 
-    // TODO Alterar dados dos ninjas (UPDATE)
+    // Alterar dados dos ninjas (UPDATE)
     @PutMapping("/{id}")
-    public String alterarNinja(@PathVariable int id){
-        return "Ninja alterado com Sucesso";
-    }
+    public NinjaModel alterarNinja(@PathVariable Long id, @RequestBody NinjaModel ninjaAtualizado){
+        return ninjaService.atualizarNinja(id, ninjaAtualizado);
+}
 
     // Deletar Ninja (DELETE)
     @DeleteMapping("/{id}")
